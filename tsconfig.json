@@ -18,7 +18,8 @@
     "paths": {
       "@container/*": ["./container/*"],
       "@helpers/*": ["./helpers/*"],
-      "@services/*": ["./services/*"]
+      "@services/*": ["./services/*"],
+      "@components/*": ["./components/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

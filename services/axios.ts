@@ -5,7 +5,7 @@ import axios, {
   AxiosResponse,
 } from 'axios';
 import config from 'config';
-import AuthHelper from './authHelper';
+import AuthHelper from '../helpers/authHelper';
 
 export class ApiService {
   axiosInstance: AxiosInstance;
