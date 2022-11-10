@@ -1,9 +1,14 @@
 import * as React from 'react';
+import Cookies from 'js-cookie';
 import SignIn from './components/SignIn';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import { login } from 'services';
+
+import { ILoginBody } from 'interfaces';
 
 export interface ILoginProps {}
 
@@ -26,8 +31,9 @@ export default function Login(props: ILoginProps) {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSignIn = (data: object) => {
-    console.log(data);
+  const onSignIn = async (data: ILoginBody) => {
+    const response = await login(data);
+    console.log(response);
   };
 
   return (

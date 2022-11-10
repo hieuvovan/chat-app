@@ -19,7 +19,9 @@
       "@container/*": ["./container/*"],
       "@helpers/*": ["./helpers/*"],
       "@services/*": ["./services/*"],
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@constants/*": ["./constants/*"],
+      "@interfaces/*": ["./interfaces/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

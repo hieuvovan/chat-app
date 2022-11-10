@@ -99,7 +99,7 @@ export class ApiService {
         resolve(resp.data);
       })
       .catch((err: any) => {
-        reject(err);
+        reject(err.response.data);
       });
   }
 

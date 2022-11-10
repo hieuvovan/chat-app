@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ControllerTextField } from '@components/text-field';
+import LoadingButton from '@components/button/LoadingButton';
 
 export interface ISignInProps {
   control: any;
@@ -9,6 +10,7 @@ export interface ISignInProps {
 
 export default function SignIn(props: ISignInProps) {
   const { control, errors, onSubmit } = props;
+
   return (
     <div className="section-wrapper w-1/4">
       <div className="section-header">
@@ -38,12 +40,12 @@ export default function SignIn(props: ISignInProps) {
             />
           </div>
         </form>
-        <button
+        <LoadingButton
           className="btn-primary w-full mt-4"
           onClick={onSubmit}
         >
           Sign in
-        </button>
+        </LoadingButton>
       </div>
     </div>
   );

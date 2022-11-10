@@ -11,7 +11,7 @@ export default class JwtHelper
   });
 
   getAuthHeader = () => ({
-    Authorization: `Bearer ${this.getToken()}`,
+    Authorization: `Bearer ${this.token}`,
   });
 
   /**
@@ -60,10 +60,10 @@ export default class JwtHelper
   }
 
   private _verifyJWTToken() {
-    const token: any = this.getToken();
+    const token: any = this.token();
     const isTokenValid: any = jwt.decode(token);
     if (!isTokenValid) {
-      this.removeToken();
+      this.destroy();
     }
     return { isTokenValid, token };
   }

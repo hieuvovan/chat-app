@@ -1,23 +1,18 @@
-export interface AuthStorage {
-  setToken(data?: any): void;
-  getToken(): void;
-  removeToken(): void;
-}
+import cookie from 'js-cookie';
+import { COOKIE_STORAGE } from 'constants/index';
+import Cookies from 'js-cookie';
 
-export class AuthStorageService implements AuthStorage {
-  ACCESS_TOKEN = 'token';
-
-  setToken(token?: any) {
-    if (token) {
-      localStorage.setItem(this.ACCESS_TOKEN, token);
-    }
+export class AuthStorageService {
+  get token(): any {
+    return cookie.get(COOKIE_STORAGE.token);
   }
 
-  getToken() {
-    return localStorage.getItem(this.ACCESS_TOKEN);
+  set token(value: string) {
+    if (this.token === value) return;
+    cookie.set(COOKIE_STORAGE.token, value);
   }
 
-  removeToken() {
-    localStorage.removeItem(this.ACCESS_TOKEN);
+  destroy() {
+    Cookies.remove(COOKIE_STORAGE.token);
   }
 }
