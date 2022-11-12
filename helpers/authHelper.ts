@@ -71,7 +71,7 @@ export default class AuthHelper extends DynamicAuth {
     // Get and check access token
     if (this.token) {
       // Normal case: Request with authorization
-      Object.assign(request.headers, this.getAuthHeader());
+      request.headers = { ...this.getAuthHeader() };
     }
     return request;
   }

@@ -19,6 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         pauseOnHover
         theme="colored"
       />
+      <Component {...pageProps} />
     </>
   );
 }

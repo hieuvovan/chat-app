@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Cookies from 'js-cookie';
 import SignIn from './components/SignIn';
 
 import { useForm } from 'react-hook-form';
