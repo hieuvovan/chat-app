@@ -30,7 +30,7 @@ export default function withPrivate(WrappedComponent: any) {
       }
     };
 
-    return authorized && <WrappedComponent {...props} />;
+    return authorized ? <WrappedComponent {...props} /> : null;
   };
 
   return WithPrivate;

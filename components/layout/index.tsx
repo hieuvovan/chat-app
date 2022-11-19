@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import withPrivate from '@HOCs/withPrivate';
 
 export interface ILayoutProps {
   children: React.ReactElement;
 }
 
-export default function Layout(props: ILayoutProps) {
+const Layout = (props: ILayoutProps) => {
   const { children } = props;
 
   const headerRef = useRef<HTMLInputElement | null>(null);
@@ -32,4 +33,6 @@ export default function Layout(props: ILayoutProps) {
       <Footer ref={footerRef} />
     </div>
   );
-}
+};
+
+export default withPrivate(Layout);

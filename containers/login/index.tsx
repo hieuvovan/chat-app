@@ -16,7 +16,7 @@ const validationSchema = yup.object().shape({
   password: yup.string().required(),
 });
 
-export default function Login(props: ILoginProps) {
+const Login = (props: ILoginProps) => {
   const {
     control,
     formState: { errors },
@@ -44,4 +44,10 @@ export default function Login(props: ILoginProps) {
       />
     </section>
   );
-}
+};
+
+Login.getLayout = function getLayout(page: React.ReactElement) {
+  return page;
+};
+
+export default Login;
