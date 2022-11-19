@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AuthStorageService } from '@services/authStorageService';
 
@@ -8,14 +8,29 @@ export default function withPrivate(WrappedComponent: any) {
   const WithPrivate = (props: any) => {
     const isLoggedIn = !!authStorageService.token;
     const router = useRouter();
+    const [authorized, setAuthorized] = useState(false);
 
-    React.useEffect(() => {
-      if (!isLoggedIn) router.push('/login');
+    useEffect(() => {
+      authCheck();
+
+      router.events.on('routeChangeStart', () => setAuthorized(false));
+      router.events.on('routeChangeComplete', authCheck);
+
+      return () => {
+        router.events.off('routeChangeStart', () => setAuthorized(false));
+        router.events.off('routeChangeComplete', authCheck);
+      };
     }, []);
 
-    if (!isLoggedIn) return null;
+    const authCheck = () => {
+      if (isLoggedIn) setAuthorized(true);
+      else {
+        setAuthorized(false);
+        router.push('/login');
+      }
+    };
 
-    return <WrappedComponent {...props} />;
+    return authorized && <WrappedComponent {...props} />;
   };
 
   return WithPrivate;

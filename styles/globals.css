@@ -18,7 +18,7 @@ body {
     @apply relative inline-flex items-center justify-center transition duration-300 rounded-md border border-primary bg-secondary py-2 px-4 text-sm font-medium text-primary disabled:opacity-75 hover:bg-primary hover:text-secondary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
   }
   .text-field {
-    @apply relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
+    @apply relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm;
   }
 }
 
