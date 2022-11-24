@@ -4,26 +4,28 @@ import { AuthStorageService } from '@services/authStorageService';
 
 const authStorageService = new AuthStorageService();
 
-export const withPrivate = (WrappedComponent: any) => {
-  const WithPrivate = (props: any) => {
+export const withPublic = (WrappedComponent: any) => {
+  const WithPublic = (props: any) => {
     const isLoggedIn = !!authStorageService.token;
     const router = useRouter();
-    const [authorized, setAuthorized] = useState(false);
+    const [authorized, setAuthorized] = useState(true);
 
     useEffect(() => {
       authCheck();
     }, []);
 
     const authCheck = () => {
-      if (isLoggedIn) setAuthorized(true);
-      else {
+      if (isLoggedIn) {
+        router.push('/');
+      } else {
         setAuthorized(false);
-        router.push('/login');
       }
     };
 
-    return authorized ? <WrappedComponent {...props} /> : null;
+    console.log('test');
+
+    return !authorized ? <WrappedComponent {...props} /> : null;
   };
 
-  return WithPrivate;
+  return WithPublic;
 };

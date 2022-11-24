@@ -10,12 +10,20 @@ const authStorageService = new AuthStorageService();
 
 export const login = async (body: ILoginBody) => {
   try {
-    const data: any = await axiosInstance.post(['users', 'login'], body);
+    const resp: any = await axiosInstance.post(['login'], body);
+    const { data } = resp || {};
     authStorageService.token = data?.accessToken;
-    
-    return data;
+
+    return resp;
   } catch (errors: any) {
     toast.error(errors?.errors?.[0]);
     console.log(errors);
   }
+};
+
+export const logout = () => {
+  authStorageService.destroy();
+  return {
+    isSuccess: true,
+  };
 };

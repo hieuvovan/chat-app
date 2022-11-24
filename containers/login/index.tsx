@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SignIn from './components/SignIn';
+import { withPublic } from '@HOCs/index';
 
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -8,11 +9,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { login } from 'services';
 
 import { ILoginBody } from 'interfaces';
+import { useRouter } from 'next/router';
+
+import { useDispatch } from 'react-redux';
+import { setIsLoggedIn } from 'reducers/auth';
 
 export interface ILoginProps {}
 
 const validationSchema = yup.object().shape({
-  email: yup.string().email('Invalid email').required(),
+  username: yup.string().required(),
   password: yup.string().required(),
 });
 
@@ -30,9 +35,20 @@ const Login = (props: ILoginProps) => {
     resolver: yupResolver(validationSchema),
   });
 
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const onLoginSuccess = () => {
+    dispatch(setIsLoggedIn(true));
+    router.push('/');
+  };
+
   const onSignIn = async (data: ILoginBody) => {
-    const response = await login(data);
-    console.log(response);
+    const resp = await login(data);
+    const { isSuccess } = resp || {};
+
+    isSuccess && onLoginSuccess();
   };
 
   return (
@@ -46,8 +62,4 @@ const Login = (props: ILoginProps) => {
   );
 };
 
-Login.getLayout = function getLayout(page: React.ReactElement) {
-  return page;
-};
-
-export default Login;
+export default withPublic(Login);

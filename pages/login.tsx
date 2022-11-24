@@ -1,3 +1,9 @@
 import Login from 'containers/login/index';
 
-export default Login;
+const LoginPage = () => <Login />;
+
+LoginPage.getLayout = function getLayout(page: React.ReactElement) {
+  return page;
+};
+
+export default LoginPage;

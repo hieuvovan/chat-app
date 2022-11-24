@@ -96,7 +96,11 @@ export class ApiService {
   private _handleRespond(request: any, resolve: any, reject: any) {
     return request
       .then((resp: AxiosResponse) => {
-        resolve(resp.data);
+        const { data } = resp || {};
+        resolve({
+          data,
+          isSuccess: true,
+        });
       })
       .catch((err: any) => {
         reject(err.response.data);

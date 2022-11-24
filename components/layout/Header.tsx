@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { IconButton } from '@components/button';
 import Avatar from '../../public/avatar.jpeg';
 import { Menu } from '@components/menu';
+import { logout } from '@services/auth';
 
 const Header = React.forwardRef(
   (props: any, ref: React.Ref<HTMLInputElement>) => {
@@ -20,16 +21,22 @@ const Header = React.forwardRef(
       anchorEl ? setAnchorEl(null) : setAnchorEl(e.currentTarget);
     };
 
+    const onLogout = () => {
+      const { isSuccess } = logout();
+
+      if (isSuccess) window.location.pathname = '/login';
+    };
+
     const items = [
       {
         icon: <></>,
         label: 'User profile',
-        onClick: () => console.log('logout'),
+        onClick: () => console.log('get profile'),
       },
       {
         icon: <></>,
         label: 'Logout',
-        onClick: () => console.log('logout'),
+        onClick: () => onLogout(),
       },
     ];
 

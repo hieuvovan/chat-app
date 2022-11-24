@@ -22,12 +22,12 @@ export default function SignIn(props: ISignInProps) {
         <form>
           <div className="grid grid-rows-2 gap-4">
             <ControllerTextField
-              label="Email"
-              name="email"
+              label="Username"
+              name="username"
               control={control}
-              helperText={errors.email?.message}
-              error={!!errors.email}
-              placeholder="Email"
+              helperText={errors.username?.message}
+              error={!!errors.username}
+              placeholder="Username"
             />
             <ControllerTextField
               label="Password"

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import withPrivate from '@HOCs/withPrivate';
 
 export interface ILayoutProps {
   children: React.ReactElement;
@@ -35,4 +34,4 @@ const Layout = (props: ILayoutProps) => {
   );
 };
 
-export default withPrivate(Layout);
+export default Layout;
