@@ -6,13 +6,12 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { login } from 'services';
+import { login } from 'reducers/auth';
 
 import { ILoginBody } from 'interfaces';
 import { useRouter } from 'next/router';
 
 import { useDispatch } from 'react-redux';
-import { setIsLoggedIn } from 'reducers/auth';
 
 export interface ILoginProps {}
 
@@ -37,18 +36,14 @@ const Login = (props: ILoginProps) => {
 
   const router = useRouter();
 
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
 
   const onLoginSuccess = () => {
-    dispatch(setIsLoggedIn(true));
     router.push('/');
   };
 
   const onSignIn = async (data: ILoginBody) => {
-    const resp = await login(data);
-    const { isSuccess } = resp || {};
-
-    isSuccess && onLoginSuccess();
+    await dispatch(login(data, onLoginSuccess));
   };
 
   return (

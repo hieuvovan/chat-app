@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layout from '@components/layout';
 
 import { reduxWrapper } from 'store/store';
+import { useSelector } from 'react-redux';
 
 import '../styles/globals.css';
+import { getProfile } from 'reducers/auth';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -20,6 +22,8 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
+
+  const user = useSelector((state: any) => state.auth);
 
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
 
@@ -41,5 +45,25 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     </>
   );
 }
+
+MyApp.getInitialProps = reduxWrapper.getInitialAppProps(
+  (store) =>
+    async ({ Component, ctx }: any) => {
+      const { accessToken = '' } = ctx?.req?.cookies || {};
+
+      if (accessToken) {
+        await store.dispatch(getProfile(accessToken));
+      }
+
+      return {
+        pageProps: {
+          ...(Component.getInitialProps
+            ? await Component.getInitialProps({ ...ctx, store })
+            : {}),
+          store,
+        },
+      };
+    }
+);
 
 export default reduxWrapper.withRedux(MyApp);

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// eslint-disable-next-line react/display-name
 export const IconButton = React.forwardRef(
   ({ children, ...props }: any, ref: any) => {
     const { className: passedClassName, ...restProps } = props;

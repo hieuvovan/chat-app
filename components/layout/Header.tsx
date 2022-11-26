@@ -7,7 +7,9 @@ import { IconButton } from '@components/button';
 import Avatar from '../../public/avatar.jpeg';
 import { Menu } from '@components/menu';
 import { logout } from '@services/auth';
+import Router from 'next/router';
 
+// eslint-disable-next-line react/display-name
 const Header = React.forwardRef(
   (props: any, ref: React.Ref<HTMLInputElement>) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -31,7 +33,7 @@ const Header = React.forwardRef(
       {
         icon: <></>,
         label: 'User profile',
-        onClick: () => console.log('get profile'),
+        onClick: () => Router.push('/profile'),
       },
       {
         icon: <></>,

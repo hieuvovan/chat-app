@@ -11,10 +11,12 @@ interface IItems {
   label: string;
 }
 
+// eslint-disable-next-line react/display-name
 export const Menu = (props: IMenuProps) => {
   const { items, anchorEl } = props;
   const menuRef = useRef<HTMLInputElement | null>(null);
 
+  const [open, setOpen] = useState(false);
   const [anchorElPosition, setAnchoElPosition] = useState({
     x: 0,
     y: 0,
@@ -23,6 +25,7 @@ export const Menu = (props: IMenuProps) => {
   useEffect(() => {
     getAnchorElPosition();
     window.addEventListener('resize', getAnchorElPosition);
+    setOpen(Boolean(anchorEl));
   }, [anchorEl]);
 
   useEffect(() => {
@@ -50,7 +53,14 @@ export const Menu = (props: IMenuProps) => {
       'px';
   };
 
-  return anchorEl ? (
+  const onItemClick = (i: any) => {
+    i.onClick();
+    setOpen(false);
+  };
+
+  console.log('Boolean', open);
+
+  return open ? (
     <div
       className="menu-container bg-white absolute z-10 w-60 rounded-md"
       ref={menuRef}
@@ -61,7 +71,7 @@ export const Menu = (props: IMenuProps) => {
             <li
               className="cursor-pointer py-2 hover:bg-sky-100"
               key={index}
-              onClick={i.onClick}
+              onClick={() => onItemClick(i)}
             >
               {i.icon}
               <span>{i.label}</span>

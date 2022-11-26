@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProfile } from 'reducers/auth';
 
 export interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
-  const isLoggedIn = useSelector((state: any) => state);
+  const user = useSelector((state: any) => state.authReducer.user);
 
-  console.log('isLoggedIn', isLoggedIn);
-
-  return <div>This is home page</div>;
+  return <div>This is homepage</div>;
 }

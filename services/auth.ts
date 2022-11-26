@@ -18,6 +18,7 @@ export const login = async (body: ILoginBody) => {
   } catch (errors: any) {
     toast.error(errors?.errors?.[0]);
     console.log(errors);
+    throw errors;
   }
 };
 
