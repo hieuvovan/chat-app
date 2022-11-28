@@ -1,11 +1,23 @@
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProfile } from 'reducers/auth';
+import { PostsSection } from '@components/modules';
 
-export interface IHomeProps {}
+export interface IHomeProps {
+  posts: any;
+}
 
 export default function Home(props: IHomeProps) {
-  const user = useSelector((state: any) => state.authReducer.user);
+  const { posts } = props;
 
-  return <div>This is homepage</div>;
+  return (
+    <section className="section-home">
+      <div className="container mx-auto">
+        <div className="top-posts w-3/5 mx-auto">
+          <PostsSection
+            title="Top posts"
+            posts={posts}
+          />
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -6,12 +6,9 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { login } from 'reducers/auth';
-
 import { ILoginBody } from 'interfaces';
 import { useRouter } from 'next/router';
-
-import { useDispatch } from 'react-redux';
+import { login } from '@services/auth';
 
 export interface ILoginProps {}
 
@@ -36,14 +33,13 @@ const Login = (props: ILoginProps) => {
 
   const router = useRouter();
 
-  const dispatch: any = useDispatch();
-
   const onLoginSuccess = () => {
     router.push('/');
   };
 
   const onSignIn = async (data: ILoginBody) => {
-    await dispatch(login(data, onLoginSuccess));
+    await login(data);
+    onLoginSuccess();
   };
 
   return (
