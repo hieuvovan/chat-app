@@ -16,7 +16,7 @@ export const PostsSection = (props: IPostsSectionProps) => {
         <h3 className="text-2xl">{title}</h3>
       </div>
       <div className="posts-body">
-        <ul className="grid grid-cols-1 gap-6 posts-list">
+        <ul className="grid grid-cols-1 gap-8 posts-list">
           {posts?.map((post: any) => (
             <li
               key={post.id}

@@ -22,6 +22,7 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       post,
+      title: post.title,
     },
     revalidate: 5,
   };

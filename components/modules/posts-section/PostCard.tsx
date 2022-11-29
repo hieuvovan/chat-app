@@ -13,8 +13,8 @@ export default function PostCard(props: IPostCard) {
   const [errorImages, setErrorImages] = useState<any[]>([]);
 
   return errorImages?.includes(post.id) ? null : (
-    <div className="post flex items-center">
-      <div className="post-cover w-2/5 relative h-32">
+    <div className="post flex items-start">
+      <div className="post-cover w-2/5 relative h-40">
         <Image
           src={post.imageUrl}
           alt={post.title}

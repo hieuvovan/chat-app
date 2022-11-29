@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../styles/globals.css';
+import Head from 'next/head';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -13,6 +14,7 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+  pageProps: any;
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
@@ -33,6 +35,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         pauseOnHover
         theme="colored"
       />
+      <Head>
+        <title>{pageProps?.title || 'Hieu Vo'}</title>
+      </Head>
       {getLayout(<Component {...pageProps} />)}
     </>
   );
