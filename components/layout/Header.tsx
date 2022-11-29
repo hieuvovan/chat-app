@@ -45,10 +45,10 @@ const Header = React.forwardRef(
     return (
       <header
         ref={ref}
-        className="header"
+        className="header fixed top-0 right-0 left-0 z-10 bg-white border-b"
       >
         <div className="container mx-auto">
-          <div className="header-wrapper py-2 flex justify-between">
+          <div className="header-wrapper py-4 flex justify-between">
             <div className="left-header w-2/5 flex items-center">
               <Link
                 className="w-1/4"

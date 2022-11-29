@@ -11,7 +11,7 @@ export default function Home(props: IHomeProps) {
   return (
     <section className="section-home">
       <div className="container mx-auto">
-        <div className="top-posts w-3/5 mx-auto">
+        <div className="top-posts w-2/3 mx-auto">
           <PostsSection
             title="Top posts"
             posts={posts}

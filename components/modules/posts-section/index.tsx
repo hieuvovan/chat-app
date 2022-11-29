@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import * as React from 'react';
 import PostCard from './PostCard';
 
@@ -11,7 +12,7 @@ export const PostsSection = (props: IPostsSectionProps) => {
 
   return (
     <div className="posts">
-      <div className="posts-header">
+      <div className="posts-header pb-6">
         <h3 className="text-2xl">{title}</h3>
       </div>
       <div className="posts-body">
@@ -21,7 +22,11 @@ export const PostsSection = (props: IPostsSectionProps) => {
               key={post.id}
               className="post-item"
             >
-              <PostCard post={post} />
+              <Link href={`/posts/${post.id}`}>
+                <a>
+                  <PostCard post={post} />
+                </a>
+              </Link>
             </li>
           ))}
         </ul>

@@ -7,6 +7,9 @@ const nextConfig = {
       {
         hostname: 'picsum.photos',
       },
+      {
+        hostname: 'js-post-api.herokuapp.com',
+      },
     ],
   },
 };

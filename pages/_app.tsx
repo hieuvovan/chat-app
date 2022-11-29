@@ -1,10 +1,9 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import type { NextPage } from 'next';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Layout from '@components/layout';
 
 import '../styles/globals.css';
 
@@ -18,9 +17,7 @@ type AppPropsWithLayout = AppProps & {
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
-
-  console.log('run');
+  const getLayout = Component.getLayout || ((page) => page);
 
   return (
     <>

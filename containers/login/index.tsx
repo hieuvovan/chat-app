@@ -25,7 +25,7 @@ const Login = (props: ILoginProps) => {
   } = useForm({
     mode: 'all',
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
     resolver: yupResolver(validationSchema),

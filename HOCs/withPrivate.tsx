@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AuthStorageService } from '@services/authStorageService';
+import Layout from '@components/layout';
 
 const authStorageService = new AuthStorageService();
 
@@ -22,7 +23,11 @@ export const withPrivate = (WrappedComponent: any) => {
       }
     };
 
-    return authorized ? <WrappedComponent {...props} /> : null;
+    return authorized ? (
+      <Layout>
+        <WrappedComponent {...props} />
+      </Layout>
+    ) : null;
   };
 
   return WithPrivate;
